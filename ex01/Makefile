@@ -5,7 +5,7 @@ OBJS_FOLDER = obj
 OBJS = $(SRCS:%.cpp=$(OBJS_FOLDER)/%.o)
 
 $(NAME): $(OBJS)
-	$(COMPILE) $(OBJS) -o $(NAME)
+	$(COMPILE) $(OBJS) -o $(NAME) 
 
 $(OBJS_FOLDER)/%.o: %.cpp
 	@mkdir -p $(OBJS_FOLDER)

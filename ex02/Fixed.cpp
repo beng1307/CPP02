@@ -112,8 +112,94 @@ bool	Fixed::operator!=(const Fixed &fixed) const
 
 ///////////////////////////////////////////////////////////////////////////////
 
+Fixed	Fixed::operator+(const Fixed &fixed)
+{
+	Fixed	result;
+
+	result.fixed_point_number = fixed_point_number + fixed.fixed_point_number; 
+	return (result);
+}
+
+Fixed	Fixed::operator-(const Fixed &fixed)
+{
+	Fixed	result;
+
+	result.fixed_point_number = fixed_point_number - fixed.fixed_point_number; 
+	return (result);
+}
+
+Fixed	Fixed::operator*(const Fixed &fixed)
+{
+	Fixed	result;
+
+	result.fixed_point_number = fixed_point_number * fixed.fixed_point_number; 
+	return (result);
+}
+
+Fixed	Fixed::operator/(const Fixed &fixed)
+{
+	Fixed	result;
+
+	result.fixed_point_number = fixed_point_number  fixed.fixed_point_number; 
+	return (result);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
 Fixed	Fixed::operator++(int)
 {
-	Fixed	copy;
+	Fixed	copy = *this;
 
+	return (++this->fixed_point_number, copy);
+}
+
+Fixed	&Fixed::operator++()
+{
+	return (++this->fixed_point_number, *this);
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	copy = *this;
+
+	return (--this->fixed_point_number, copy);
+}
+
+Fixed	&Fixed::operator--()
+{
+	return (--this->fixed_point_number, *this);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+Fixed	&Fixed::min(Fixed &number_1, Fixed &number_2)
+{
+	if (number_1 < number_2)
+		return (number_1);
+	else
+		return (number_2);
+}
+
+const Fixed	&Fixed::min(const Fixed &number_1, const Fixed &number_2)
+{
+	if (number_1 < number_2)
+		return (number_1);
+	else
+		return (number_2);
+}
+
+Fixed	&Fixed::max(Fixed &number_1, Fixed &number_2)
+{
+	if (number_1 > number_2)
+		return (number_1);
+	else
+		return (number_2);
+}
+
+const Fixed	&Fixed::max(const Fixed &number_1, const Fixed &number_2)
+{
+	if (number_1 > number_2)
+		return (number_1);
+	else
+		return (number_2);
 }

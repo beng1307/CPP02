@@ -5,7 +5,7 @@
       "name": "C++ Launch (main)",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/ex00/fixed",
+      "program": "${workspaceFolder}/ex01/fixed",
       "args": [],
       "stopAtEntry": true,
       "cwd": "${workspaceFolder}",

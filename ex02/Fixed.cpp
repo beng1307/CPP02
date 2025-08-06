@@ -1,10 +1,8 @@
 #include "Fixed.hpp"
-// #include <iostream>
 #include <cmath>
 
 Fixed::Fixed()
 {
-	// std::cout << "Default constructor called" << std::endl;
 	fixed_point_number = 0;
 }
 
@@ -12,13 +10,11 @@ Fixed::Fixed()
 
 Fixed::Fixed(const int number)
 {
-	// std::cout << "Int constructor called" << std::endl;
 	fixed_point_number = number << n_of_fractional_bits;
 }
 
 Fixed::Fixed(const float number)
 {
-	// std::cout << "Float constructor called" << std::endl;
 	fixed_point_number = roundf(number * (1 << n_of_fractional_bits));
 }
 
@@ -26,17 +22,13 @@ Fixed::Fixed(const float number)
 
 Fixed::Fixed(const Fixed &fixed)
 {
-	// std::cout << "Copy constructor called" << std::endl;
 	fixed_point_number = fixed.getRawBits();
 }
 
 Fixed &Fixed::operator=(const Fixed &fixed)
 {
 	if (this != &fixed)
-	{
-		// std::cout << "Copy assignment operator called" << std::endl;
 		fixed_point_number = fixed.getRawBits();
-	}
 	return (*this);
 }
 
@@ -44,7 +36,7 @@ Fixed &Fixed::operator=(const Fixed &fixed)
 
 Fixed::~Fixed(void)
 {
-	// std::cout << "Destructor called" << std::endl;
+	return ;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -112,7 +104,7 @@ bool	Fixed::operator!=(const Fixed &fixed) const
 
 ///////////////////////////////////////////////////////////////////////////////
 
-Fixed	Fixed::operator+(const Fixed &fixed)
+Fixed	Fixed::operator+(const Fixed &fixed) const
 {
 	Fixed	result;
 
@@ -120,7 +112,7 @@ Fixed	Fixed::operator+(const Fixed &fixed)
 	return (result);
 }
 
-Fixed	Fixed::operator-(const Fixed &fixed)
+Fixed	Fixed::operator-(const Fixed &fixed) const
 {
 	Fixed	result;
 
@@ -128,19 +120,19 @@ Fixed	Fixed::operator-(const Fixed &fixed)
 	return (result);
 }
 
-Fixed	Fixed::operator*(const Fixed &fixed)
+Fixed	Fixed::operator*(const Fixed &fixed) const
 {
 	Fixed	result;
 
-	result.fixed_point_number = fixed_point_number * fixed.fixed_point_number; 
+	result.fixed_point_number = (fixed_point_number * fixed.fixed_point_number) >> n_of_fractional_bits; 
 	return (result);
 }
 
-Fixed	Fixed::operator/(const Fixed &fixed)
+Fixed	Fixed::operator/(const Fixed &fixed) const
 {
 	Fixed	result;
 
-	result.fixed_point_number = fixed_point_number  fixed.fixed_point_number; 
+	result.fixed_point_number = (fixed_point_number << n_of_fractional_bits) / fixed.fixed_point_number;
 	return (result);
 }
 
